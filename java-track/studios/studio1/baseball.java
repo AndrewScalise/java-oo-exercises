@@ -35,6 +35,6 @@ public class baseball {
 	public static void main(String args[]){
 		baseball player = new baseball("Diaz", "Right", 99);
 		player.gameover(3, 4, 2);
-		System.out.println(player.toString());
+		System.out.println(player.toString())
 	}
 }
