@@ -28,7 +28,7 @@ public class baseball {
 	}
 	
 	public String toString(){
-		return "Name: " +this.name+ " Jersey: " +this.jersey+ " Stance: " +this.stance+ "/n"
+		return "Name: " +this.name+ " Jersey: " +this.jersey+ " Stance: " +this.stance+ "\n"
 				+"Hits: " +this.hits+ " RBI's: " +this.rbi+ " Games played: " +this.games;
 	}
 	
