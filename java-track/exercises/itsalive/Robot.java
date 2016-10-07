@@ -55,6 +55,12 @@ public class Robot {
 		}
 	}
 	
+	//set speed
+	public void setSpeed(int newSpeed){
+		this.speed = newSpeed;
+	}
+	
+	//rotate robot
 	public void rotate(String LR){
 		if(this.orientation == "North"){
 			if(LR == "left"){
