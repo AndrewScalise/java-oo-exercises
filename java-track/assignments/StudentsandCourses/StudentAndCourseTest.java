@@ -1,6 +1,9 @@
+package StudentsandCourses;
 import org.junit.Test;
 
 import junit.framework.TestCase;
+
+import StudentsandCourses.Student;
 
 public class StudentAndCourseTest extends TestCase {
 
@@ -224,7 +227,6 @@ public class StudentAndCourseTest extends TestCase {
 			assertTrue("course toString does not contain credits", cc.toString().contains("" + c));
 		}
 	}
-
 
 
 }
