@@ -15,8 +15,6 @@ public class Student {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.id = id;
-		this.credits = 0;
-		this.gpa = 0.0;
 	}
 	
 	//constructor2

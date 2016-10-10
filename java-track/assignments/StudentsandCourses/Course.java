@@ -35,39 +35,45 @@ public class Course {
 	
 	//add student to roster
 	public boolean addStudent(Student x){
-		int roster = this.seats - this.remainingSeats;
-		if(roster == 0){
-			this.remainingSeats -= 1;
-			return true;
-		}
-		else{
-			for(int i = 0; i < roster; i++){
-				Student a = this.studentRoster[i];
-				if(a.getName().equals(x.getName())){
-					return false;
-				}
+		
+		for (int i = 0; i < studentRoster.length -1; i++){
+			if(studentRoster[i] == null){
+				studentRoster[i] = x;
+				this.remainingSeats -= 1;
+				return true;
+			}
+			else if(studentRoster[i].getName().equals(x.getName())){
+				return false;
 			}
 		}
+		return false;
+	}
+	
+	
+	//average gpa of entire class
+	public double averageGPA(){
+		int roster = this.seats - this.remainingSeats;
+		double gpaTotal = 0.0;
+		for(int i = 0; i < studentRoster.length - 1; i++){
+			if(studentRoster[i] != null){
+				gpaTotal += this.studentRoster[i].getGPA();
+			}
+			else{
+				return (gpaTotal/roster);
+			}
+		}
+		
+		return (gpaTotal/roster);
 	}
 	
 	//generate roster
 	public String generateRoster(){
-		int roster = this.seats - this.remainingSeats;
-		for(int i = 0; i < roster; i++){
-			String student = this.studentRoster[i].toString();
-			return student;
+		for(int i = 0; i < studentRoster.length - 1; i++){
+			if(studentRoster[i] != null){
+				return studentRoster[i].toString();
+			}
 		}
 		return "";
-	}
-	
-	public double averageGPA(){
-		int roster = this.seats - this.remainingSeats;
-		double gpaTotal = 0.0;
-		for(int i = 0; i < roster; i++){
-			gpaTotal += this.studentRoster[i].getGPA();
-		}
-		
-		return (gpaTotal/roster);
 	}
 	
 	//to string
