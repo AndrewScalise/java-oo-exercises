@@ -35,8 +35,10 @@ public class Course {
 	
 	//add student to roster
 	public boolean addStudent(Student x){
-		
-		for (int i = 0; i < studentRoster.length -1; i++){
+		if(this.remainingSeats == 0){
+			return false;
+		}
+		for (int i = 0; i < studentRoster.length; i++){
 			if(studentRoster[i] == null){
 				studentRoster[i] = x;
 				this.remainingSeats -= 1;
@@ -54,7 +56,7 @@ public class Course {
 	public double averageGPA(){
 		int roster = this.seats - this.remainingSeats;
 		double gpaTotal = 0.0;
-		for(int i = 0; i < studentRoster.length - 1; i++){
+		for(int i = 0; i < studentRoster.length; i++){
 			if(studentRoster[i] != null){
 				gpaTotal += this.studentRoster[i].getGPA();
 			}
