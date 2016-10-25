@@ -28,8 +28,14 @@ public class Javagram {
 				System.out.println("Image path (relative to " + dir + "):");
 				relPath = in.next();
 				
-				String[] relPathParts = relPath.split(File.separator);
-				imagePath = dir + File.separator + String.join(File.separator, Arrays.asList(relPathParts));
+				/*this part isn't working
+				 * 
+				 * String[] relPathParts = relPath.split(File.separator);
+				 * imagePath = dir + File.separator + String.join(File.separator, Arrays.asList(relPathParts));
+				 * 
+				 */
+				
+				imagePath = (dir + "\\" + relPath);
 				
 				picture = new Picture(imagePath);
 				
@@ -111,7 +117,7 @@ public class Javagram {
 		System.out.println("Welcome to the Picture Filter menu!");
 		System.out.println("1. Blue Filter");
 		System.out.println("2. Invert Filter");
-		System.out.println("3. BrightnessFilter");
+		System.out.println("3. Grayscale Filter");
 		System.out.println("Please select an option: ");
 		int selection = in.nextInt();
 		return selection;
