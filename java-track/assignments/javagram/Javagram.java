@@ -13,7 +13,7 @@ public class Javagram {
 		// Create the base path for images		
 		String[] baseParts = {System.getProperty("user.dir"), "images"};
 		String dir = String.join(File.separator, baseParts);
-		String relPath;
+		String relPath = null;
 		Picture picture = null;
 		Scanner in = new Scanner(System.in);
 		
@@ -40,9 +40,14 @@ public class Javagram {
 		} while(picture == null);
 		
 		// TODO - prompt user for filter and validate input
+		int x = displayFilterMenu(in);
+		while(x < 0 || x > 3){
+			System.out.println("Invalid selection, please try again: ");
+			x = in.nextInt();
+		}
 		
 		// TODO - pass filter ID int to getFilter, and get an instance of Filter back 
-		BlueFilter filter = getFilter();			
+		Filter filter = getFilter(x);			
 
 		// filter and display image
 		Picture processed = filter.process(picture);
@@ -59,7 +64,20 @@ public class Javagram {
 		
 		if (fileName.equals("exit")) {
 			System.out.println("Image not saved");
-		} else {
+		}
+		else if(fileName.equals(relPath)){
+			System.out.println("Are you sure you wish to overwrite the original file? [Yes or no]");
+			String answer = in.next();
+			if(answer.equals("Yes") || answer.equals("yes")){
+				String absFileName = dir + File.separator + fileName;
+				processed.save(absFileName);
+				System.out.println("Image saved to " + absFileName);
+			}
+			else{
+				System.out.println("Image not saved");
+			}
+		}
+		else {
 			String absFileName = dir + File.separator + fileName;
 			processed.save(absFileName);
 			System.out.println("Image saved to " + absFileName);
@@ -71,11 +89,32 @@ public class Javagram {
 	
 	// TODO - refactor this method to accept an int parameter, and return an instance of the Filter interface
 	// TODO - refactor this method to thrown an exception if the int doesn't correspond to a filter
-	private static BlueFilter getFilter() {
+	private static Filter getFilter(int choice) {
+		
+		if (choice < 0 || choice > 3) throw new IllegalArgumentException("Select a filter by using integers 1-3");
 		
 		// TODO - create some more filters, and add logic to return the appropriate one
-		return new BlueFilter();
+		if(choice == 1){
+			return new BlueFilter();
+		}
+		else if (choice == 2){
+			return new InvertFilter();
+		}
+		else{
+			return new GrayscaleFilter();
+		}
 		
+	}
+	
+	//create a display for choosing filters
+	private static int displayFilterMenu(Scanner in){
+		System.out.println("Welcome to the Picture Filter menu!");
+		System.out.println("1. Blue Filter");
+		System.out.println("2. Invert Filter");
+		System.out.println("3. BrightnessFilter");
+		System.out.println("Please select an option: ");
+		int selection = in.nextInt();
+		return selection;
 	}
 
 }

@@ -82,7 +82,7 @@ public class Student {
 	}
 	
 	//Legacy
-	public Student createLegacy(Student a, Student b){
+	public static Student createLegacy(Student a, Student b){
 		//give name
 		String firstName = a.firstName + " " + a.lastName;
 		String lastName = b.firstName + " " + b.lastName;

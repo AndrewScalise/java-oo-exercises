@@ -1,5 +1,8 @@
 package StudentsandCourses;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Course {
 
 	//Fields
@@ -9,6 +12,8 @@ public class Course {
 	private int remainingSeats;
 	private Student[] studentRoster;
 	
+	private List<Course> courses = new ArrayList<Course>();
+	
 	//Constructor
 	public Course(String name, int credits, int seats){
 		this.name = name;
@@ -16,6 +21,7 @@ public class Course {
 		this.seats = seats;
 		this.remainingSeats = seats;
 		this.studentRoster = new Student[seats];
+		courses.add(new Course(name, credits, seats));
 	}
 	
 	//Behaviors
@@ -76,6 +82,13 @@ public class Course {
 			}
 		}
 		return "";
+	}
+	
+	//get all courses
+	public void getAllCourses(){
+		for(int i = 0; i < courses.size(); i++){
+			System.out.println(this.courses.get(i));
+		}
 	}
 	
 	//to string
